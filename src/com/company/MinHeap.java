@@ -36,7 +36,7 @@ public class MinHeap {
     }
 
     // returns the first element or root or min element
-    public int peak() {
+    public int peek() {
         if(size == 0) throw new IllegalStateException();
         return items[0];
     }
@@ -46,6 +46,10 @@ public class MinHeap {
         if(size == 0) throw new IllegalStateException();
         int item = items[0];
         items[0] = items[size - 1];
+        // after min element is replaced with the value of heaps' last
+        // element, remove the value in last element's index to reflect
+        // this swap
+        items[size - 1] = 0;
         size--;
         percolateDown();
         return  item;
@@ -80,7 +84,7 @@ public class MinHeap {
             } else {
                 swap(index, smallerChildIndex);
             }
-            index = smallerChildIndex;
+                index = smallerChildIndex;
         }
     }
 
